@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# find all links in home directory, and if they point into the dotfiles repo,
+#  remove them
+find ~ -type l -print0 2>/dev/null |
+while IFS= read -r -d '' file; do
+	if [[ "$(readlink -f $file)" = "$(pwd)"* ]]; then
+		echo -n "Removing $file: "
+		if [ "$1" == "dry" ]; then
+			echo "DRY"
+		else
+			rm $file
+			echo "OK"
+		fi
+	fi
+done
