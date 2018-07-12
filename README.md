@@ -40,3 +40,21 @@ This file must be an array of files and folders to be exempt. An example (shown 
   "configs/*"
 ]
 ```
+
+## Custom install configurations
+
+Custom configurations may be created with json files (and passed in with `-c`, `--config`) which allow groups of files to be ignored for certain setups.
+
+Example for servers, skipping files only needed when a graphical interface is being used:
+
+```
+{
+  "no_install_file": [
+    "xorg/xinitrc"
+  ],
+  "no_install_folder": [
+    "i3",
+    "polybar"
+  ]
+}
+```
