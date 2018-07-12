@@ -30,3 +30,31 @@ fzf plugins go in a subfolder, `~/.fzf`, and should be installed as such. This c
 # Ignored files and folders
 
 Not everything should be installed, so a blacklist is created. The default blacklist can be found in the bootstrap, defined as an array named `IGNORE`.
+
+This default blacklist will not cover everything you may not want to install when using `dotfile-bootstrap` as a submodule, so a file `bs_ignore.json` may be provided. This file must exist in the directory bootstrap is called from (which is currently restricted to the root of the repository).
+
+This file must be an array of files and folders to be exempt. An example (shown below) will ignore a folder named `configs`, which could be used for bootstrap configs so they do not get installed.
+
+```
+[
+  "configs/*"
+]
+```
+
+## Custom install configurations
+
+Custom configurations may be created with json files (and passed in with `-c`, `--config`) which allow groups of files to be ignored for certain setups.
+
+Example for servers, skipping files only needed when a graphical interface is being used:
+
+```
+{
+  "no_install_file": [
+    "xorg/xinitrc"
+  ],
+  "no_install_folder": [
+    "i3",
+    "polybar"
+  ]
+}
+```
