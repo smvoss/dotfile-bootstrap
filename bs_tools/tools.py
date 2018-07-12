@@ -1,6 +1,10 @@
 import os
 import fnmatch
-import glob2 as glob
+
+try:
+    import glob2 as glob
+except ImportError:
+    import glob
 
 
 def filter_files(file, filter_arr):
@@ -11,6 +15,7 @@ def filter_files(file, filter_arr):
 
 
 def validating_user_input(question, options=['y', 'n', 'a']):
+    user_input = None
     valid_option_chosen = False
 
     while not valid_option_chosen:
